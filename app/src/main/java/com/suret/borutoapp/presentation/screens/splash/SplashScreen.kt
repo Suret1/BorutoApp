@@ -32,10 +32,10 @@ fun SplashScreen(
 
     val onBoardingCompleted by splashVM.onBoardingCompleted.collectAsState()
 
-    val degress = remember { Animatable(0f) }
+    val degrees = remember { Animatable(0f) }
 
     LaunchedEffect(key1 = true) {
-        degress.animateTo(
+        degrees.animateTo(
             targetValue = 360f,
             animationSpec = tween(
                 durationMillis = 1000,
@@ -49,49 +49,38 @@ fun SplashScreen(
             navController.navigate(Screen.Welcome.route)
         }
     }
-    Splash(degress = degress.value)
+    Splash(degrees = degrees.value)
 }
 
 @Composable
-fun Splash(degress: Float) {
-    if (isSystemInDarkTheme()) {
-        Box(
-            modifier = Modifier
-                .background(Color.Black)
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                modifier = Modifier.rotate(degrees = degress),
-                painter = painterResource(id = R.drawable.ic_logo),
-                contentDescription = stringResource(R.string.app_logo)
-            )
-        }
-    } else {
-        Box(
-            modifier = Modifier
-                .background(Brush.verticalGradient(listOf(Purple700, Purple500)))
-                .fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            Image(
-                modifier = Modifier.rotate(degrees = degress),
-                painter = painterResource(id = R.drawable.ic_logo),
-                contentDescription = stringResource(R.string.app_logo)
-            )
-        }
+fun Splash(degrees: Float) {
+    val modifier =
+        if (isSystemInDarkTheme()) {
+            Modifier.background(Color.Black)
+        } else Modifier.background(
+            Brush.verticalGradient(listOf(Purple700, Purple500))
+        )
+    Box(
+        modifier = modifier
+            .fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Image(
+            modifier = Modifier.rotate(degrees = degrees),
+            painter = painterResource(id = R.drawable.ic_logo),
+            contentDescription = stringResource(R.string.app_logo)
+        )
     }
 }
 
 @Preview
 @Composable
 fun SplashScreenPreview() {
-    Splash(degress = 0f)
+    Splash(degrees = 0f)
 }
-
 
 @Composable
 @Preview(uiMode = UI_MODE_NIGHT_YES)
 fun SplashScreenDarkPreview() {
-    Splash(degress = 0f)
+    Splash(degrees = 0f)
 }

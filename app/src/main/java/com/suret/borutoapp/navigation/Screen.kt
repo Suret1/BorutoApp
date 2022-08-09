@@ -9,6 +9,5 @@ sealed class Screen(val route: String) {
             return "details_screen/$heroId"
         }
     }
-
     object Search : Screen(route = "search_screen")
 }

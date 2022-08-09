@@ -1,7 +1,7 @@
 package com.suret.borutoapp.util
 
 object Constants {
-    const val BASE_URL = "http://127.0.0.1:8080"
+    const val BASE_URL = "https://my-boruto.herokuapp.com/"
     const val BORUTO_DATABASE = "boruto_database"
     const val DETAILS_ARGUMENTS_KEY = "heroId"
     const val HERO_DATABASE_TABLE = "hero_table"
@@ -10,4 +10,8 @@ object Constants {
     const val LAST_ON_BOARDING_PAGE = 2
     const val PREFERENCES_NAME = "boruto_preferences"
     const val PREFERENCES_KEY = "on_boarding_completed"
+    const val ITEMS_PER_PAGE = 3
+    const val ABOUT_TEXT_MAX_LINES = 7
+    const val MIN_BACKGROUND_IMAGE_HEIGHT = 0.4f
+
 }
