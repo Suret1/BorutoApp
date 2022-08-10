@@ -1,15 +1,20 @@
 package com.suret.borutoapp.navigation
 
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.unit.IntOffset
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import coil.annotation.ExperimentalCoilApi
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.suret.borutoapp.presentation.screens.details.DetailsScreen
 import com.suret.borutoapp.presentation.screens.home.HomeScreen
@@ -25,9 +30,11 @@ import com.suret.borutoapp.util.Constants.DETAILS_ARGUMENTS_KEY
 @ExperimentalPagerApi
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
-    NavHost(
+    val springSpec = spring<IntOffset>(dampingRatio = Spring.DampingRatioMediumBouncy)
+    AnimatedNavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Screen.Splash.route,
+
     ) {
         composable(route = Screen.Splash.route) {
             SplashScreen(navController = navController)
@@ -35,7 +42,21 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(route = Screen.Welcome.route) {
             WelcomeScreen(navController = navController)
         }
-        composable(route = Screen.Home.route) {
+        composable(
+            route = Screen.Home.route,
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = { 1000 }, animationSpec = springSpec)
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = { -1000 }, animationSpec = springSpec)
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = { -1000 }, animationSpec = springSpec)
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = { 1000 }, animationSpec = springSpec)
+            }
+        ) {
             HomeScreen(navController = navController)
         }
         composable(

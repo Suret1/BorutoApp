@@ -127,12 +127,14 @@ dependencies {
     // System UI Controller - Accompanist
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
 
+    //Navigation Animation - Accompanist
+    implementation "com.google.accompanist:accompanist-navigation-animation:0.25.0"
+
     // Palette API
     implementation "androidx.palette:palette-ktx:1.0.0"
 
     //Timber
     implementation "com.jakewharton.timber:timber:$timber"
-
 
     // Testing
     androidTestImplementation "androidx.test:runner:1.4.0"
@@ -141,10 +143,7 @@ dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     debugImplementation "androidx.compose.ui:ui-test-manifest:$compose_version"
-
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.3"
-
-
 }

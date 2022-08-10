@@ -9,6 +9,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.suret.borutoapp.navigation.SetupNavGraph
 import com.suret.borutoapp.ui.theme.BorutoAppTheme
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BorutoAppTheme {
-                navController = rememberNavController()
+                navController = rememberAnimatedNavController()
                 SetupNavGraph(navController = navController)
             }
         }
